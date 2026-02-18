@@ -1,0 +1,20 @@
+# - name: "Init ssh"
+#   hosts: linux
+#   tasks:
+#     - name: "tet"
+#       become: true
+#       ping:
+
+# - name: "Test windows"
+#   hosts: domain_controllers
+#   become_method: runas
+#   become_user: kerolos
+#   tasks:
+#     - name: "tet"
+#       become: true
+#       ansible.windows.win_ping:
+
+- name: "Common operations for linux"
+  hosts: linux
+  tasks:
+    - import_tasks: "./tasks/common.yml"
