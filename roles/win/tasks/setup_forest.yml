@@ -1,0 +1,5 @@
+- name: Create new domain in a new forest on the target host
+  microsoft.ad.domain:
+    dns_domain_name: iti.local
+    safe_mode_password: "{{ safe_mode_pw }}"
+    reboot: true

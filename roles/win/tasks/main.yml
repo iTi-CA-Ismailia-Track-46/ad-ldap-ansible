@@ -1,0 +1,13 @@
+---
+# tasks file for win
+# - name: Setup forest
+#   import_tasks: setup_forest.yml
+
+# - name: setup windows server network
+#   import_tasks: setup_net.yml
+
+# - name: setup domain controller
+#   import_tasks: setup_ad.yml
+- name: test
+  import_tasks: setup_users.yml
+...

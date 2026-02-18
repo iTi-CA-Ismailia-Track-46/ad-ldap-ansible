@@ -14,7 +14,15 @@
 #       become: true
 #       ansible.windows.win_ping:
 
-- name: "Common operations for linux"
-  hosts: linux
-  tasks:
-    - import_tasks: "./tasks/common.yml"
+# - name: "Common operations for linux"
+#   hosts: linux
+#   tasks:
+#     - import_tasks: "./tasks/common.yml"
+
+- name: "Configure windows AD"
+  hosts: domain_controllers
+  roles:
+    - role: win
+      vars:
+        domain_admin_password: TEST_PASS
+        safe_mode_pw: TEST_PASS

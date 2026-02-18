@@ -1,0 +1,4 @@
+---
+# vars file for win
+domain_name: iti.local
+domain_admin_user: kerolos@iti.local
