@@ -1,0 +1,27 @@
+---
+- name: install common ldap packages
+  ansible.builtin.package:
+    name:
+      - realmd
+      - sssd
+      - sssd-tools
+      - adcli
+    state: present
+
+- name: install ldap packages for ubuntu
+  ansible.builtin.apt:
+    name:
+      - libnss-sss
+      - libpam-sss
+      - packagekit
+    state: present
+  when: "'ubuntu_vms' in group_names"
+
+- name: install ldap packages for red hat
+  ansible.builtin.dnf:
+    name:
+      - oddjob
+      - oddjob-mkhomedir
+      - samba-common-tools
+    state: present
+  when: "'redhat_vms' in group_names"

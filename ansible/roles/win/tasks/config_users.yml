@@ -1,0 +1,25 @@
+---
+- name: Disable password complexity requirements
+  community.windows.win_security_policy:
+    section: System Access
+    key: PasswordComplexity
+    value: 0
+
+- name: Set minimum password length
+  community.windows.win_security_policy:
+    section: System Access
+    key: MinimumPasswordLength
+    value: 8
+
+- name: Create users
+  microsoft.ad.user:
+    identity: "{{ item.name | lower }}"
+    firstname: "{{ item.name }}"
+    password: "{{ item.password }}"
+    state: present
+    groups:
+      set:
+        - Domain Admins
+        - Domain Users
+  loop: "{{ users }}"
+...

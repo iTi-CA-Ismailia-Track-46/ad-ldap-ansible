@@ -1,0 +1,31 @@
+---
+- name: Configure Domain Controller DNS in Netplan
+  ansible.builtin.copy:
+    dest: /etc/netplan/60-custom-dns.yaml
+    mode: "0600"
+    content: |
+      network:
+        version: 2
+        ethernets:
+          eth0:
+            nameservers:
+              addresses: [{{ hostvars[groups['domain_controller'][0]]['ansible_interfaces'][0]['ipv4']['address'] }}]
+              search: [ {{ domain_name }} ]
+            dhcp4-overrides:
+              use-dns: false
+  notify:
+    - restart systemd networkd
+    - apply netplan
+  when: "'ubuntu_vms' in group_names"
+
+- name: setup dns red-hat
+  community.general.nmcli:
+    ifname: "{{ ansible_default_ipv4.interface }}"
+    type: ethernet
+    conn_name: "{{ ansible_default_ipv4.interface }}"
+    dns4:
+      - "{{ hostvars[groups['domain_controller'][0]]['ansible_interfaces'][0]['ipv4']['address'] }}"
+    state: present
+  when: "'redhat_vms' in group_names"
+  notify: restart NetworkManager
+...

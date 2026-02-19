@@ -1,16 +1,16 @@
 ---
 # handlers file for main
-- name:  restart systemd networkd
+- name: restart systemd networkd
   ansible.builtin.systemd:
     name: systemd-networkd
     state: restarted
-  
-- name:  apply netplan
+
+- name: apply netplan
   ansible.builtin.shell:
     command: netplan apply
   become: true
-  
-- name:  restart NetworkManager
+
+- name: restart NetworkManager
   ansible.builtin.systemd:
     name: NetworkManager
     state: restarted

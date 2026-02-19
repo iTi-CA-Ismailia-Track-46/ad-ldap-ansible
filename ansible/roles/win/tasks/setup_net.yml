@@ -1,0 +1,12 @@
+---
+- name: Change the hostname
+  ansible.windows.win_hostname:
+    name: itidc
+  register: res
+
+- name: Set internal DNS server to localhost
+  ansible.windows.win_dns_client:
+    adapter_names: "*"
+    ipv4_addresses:
+      - "127.0.0.1"
+...
