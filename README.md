@@ -146,12 +146,6 @@ cd ansible/
 ansible-playbook playbook.yaml --vault-password-file pass_vault_file
 ```
 
-**Via run.sh (deploy to a jump host):**
-
-```bash
-./run.sh
-```
-
 ---
 
 ## Ansible Vault
