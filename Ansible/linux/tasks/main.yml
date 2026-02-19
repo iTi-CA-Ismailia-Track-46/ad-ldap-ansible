@@ -1,0 +1,14 @@
+---
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ ansible_hostname }}.{{ domain_name }}"
+
+- name: setup linux dns and DC cert
+  include_tasks: setup_dns_cert.yml
+
+- name: install ldap packages
+  include_tasks: install_packages.yml
+
+- name: join ad
+  include_tasks: join_ad.yml
+...

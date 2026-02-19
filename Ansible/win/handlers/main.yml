@@ -1,0 +1,5 @@
+---
+# handlers file for win
+- name: force update
+  ansible.windows.win_shell: |
+    gpupdate /force

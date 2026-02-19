@@ -1,0 +1,7 @@
+---
+# vars file for win
+domain_name: iti.local
+domain_admin_user: ansible
+ca_common_name: iti
+cert_path_windows: "C:\\Windows\\Temp\\root_ca.cer"
+cert_path_local: "./fetched_certs/"

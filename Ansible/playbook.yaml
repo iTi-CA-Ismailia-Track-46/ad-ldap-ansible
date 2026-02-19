@@ -1,0 +1,19 @@
+---
+- name: setup ad
+  hosts: domain_controller
+  vars_files: 
+  - ./win/vars/pass.yml
+  - ./win/vars/users.yml
+  roles:
+  - win
+
+- name: join linux to ad
+  hosts: linux
+  become: true
+  become_user: root
+  become_method: sudo
+  vars_files: 
+  - ./win/vars/pass.yml
+  - ./win/vars/main.yml
+  roles:
+  - linux

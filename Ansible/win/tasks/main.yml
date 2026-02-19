@@ -1,0 +1,14 @@
+---
+# tasks file for win
+- name: setup windows server network
+  import_tasks: setup_net.yml
+
+- name: setup domain controller
+  import_tasks: setup_ad.yml
+
+- name: config users
+  import_tasks: config_users.yml
+
+- name: config cert
+  import_tasks: setup_cert.yml
+...

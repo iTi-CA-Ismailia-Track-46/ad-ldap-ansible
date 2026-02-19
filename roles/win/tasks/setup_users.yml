@@ -1,7 +1,0 @@
-- name: Create users
-  microsoft.ad.user:
-    name: kofta
-    enabled: true
-    domain_username: "{{ domain_admin_user }}"
-    domain_password: "{{ domain_admin_password }}"
-    password: TEST_PASS

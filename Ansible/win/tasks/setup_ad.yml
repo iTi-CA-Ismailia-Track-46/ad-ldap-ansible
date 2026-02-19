@@ -1,0 +1,24 @@
+---
+- name: Create new forest
+  microsoft.ad.domain:
+    dns_domain_name: "{{ domain_name }}"
+    safe_mode_password: "{{ safe_mode_pw }}"
+    reboot: true
+  run_once: true
+
+- name: Install Active Directory Domain Services role and promote to a DC
+  microsoft.ad.domain_controller:
+    dns_domain_name: "{{ domain_name }}"
+    safe_mode_password: "{{ safe_mode_pw }}"
+    install_dns: true 
+    state: domain_controller
+    reboot: true 
+    domain_admin_user: "{{ domain_admin_user }}@{{ domain_name }}"
+    domain_admin_password: "{{ domain_admin_password }}"
+  run_once: true
+  register: ad_promo
+
+- name: Wait for 10 minutes (to wait for reboot and group client)
+  ansible.builtin.pause:
+    minutes: 10
+...
